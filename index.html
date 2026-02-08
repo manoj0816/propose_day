@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>💌 Propose Day Letter</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  font-family: 'Georgia', serif;
+  overflow-x: hidden;
+}
+
+/* 🌹 + 💖 FALLING */
+.fall {
+  position: fixed;
+  top: -10px;
+  animation: fall linear forwards;
+  pointer-events: none;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* 💌 ENVELOPE */
+.envelope {
+  width: 100%;
+  max-width: 720px;
+  margin: 40px auto;
+}
+
+.flap {
+  height: 80px;
+  background: #ff4e50;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  animation: openFlap 2s ease forwards;
+}
+
+@keyframes openFlap {
+  to { transform: rotateX(180deg); opacity: 0; }
+}
+
+/* 📩 LETTER */
+.mail-wrapper {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  overflow: hidden;
+  animation: fadeIn 2.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* HEADER */
+.mail-header {
+  background: linear-gradient(135deg, #ff4e50, #f9d423);
+  color: white;
+  padding: 25px;
+  text-align: center;
+}
+
+/* BODY */
+.mail-body {
+  padding: 30px;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.mail-body strong {
+  color: #ff4e50;
+}
+
+/* 💖 FLOAT IMAGE */
+@keyframes floatImage {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+
+/* IMAGE */
+.image-box {
+  text-align: center;
+  margin: 25px 0;
+}
+
+.image-box img {
+  max-width: 240px;
+  width: 100%;
+  height: auto;
+  padding: 12px;
+  border-radius: 25px;
+  animation: floatImage 4s ease-in-out infinite;
+
+  border: 4px solid transparent;
+  background:
+    linear-gradient(white, white) padding-box,
+    repeating-linear-gradient(
+      45deg,
+      #ff4e50 0,
+      #ff4e50 10px,
+      transparent 10px,
+      transparent 20px
+    ) border-box;
+
+  box-shadow: 0 12px 25px rgba(255, 78, 80, 0.35);
+}
+
+/* PROPOSE TEXT */
+.propose {
+  text-align: center;
+  font-size: 22px;
+  color: #ff4e50;
+  margin: 25px 0;
+  font-weight: bold;
+}
+
+/* BUTTON */
+button {
+  background: #ff4e50;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 18px;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* LOVE MESSAGE */
+.love-message {
+  display: none;
+  text-align: center;
+  font-size: 28px;
+  color: #ff2e63;
+  margin-top: 20px;
+  animation: fadeIn 1.5s ease;
+}
+
+/* FOOTER */
+.mail-footer {
+  background: #fff0f5;
+  padding: 20px;
+  text-align: center;
+  font-size: 20px;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+  .mail-body { font-size:16px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="envelope">
+  <div class="flap"></div>
+
+  <div class="mail-wrapper">
+    <div class="mail-header">
+      <h1>💌 A Love Mail for Manoj</h1>
+      <p>Happy Propose Day • February 8 💕</p>
+      <p>From: Vathani ❤️</p>
+    </div>
+
+    <div class="mail-body">
+
+      <p>Dear <strong>Manoj</strong>,</p>
+
+      <p>
+        ❤️ <strong>En life-la oru azhagana chapter nee.</strong><br>
+        From small smiles to deep conversations,
+        everything feels special because of you.
+      </p>
+
+      <p>
+        💕 <strong>Un kooda irukkumbodhu time nikkura madhiri irukku.</strong><br>
+        You are my comfort, my happiness,
+        my favorite person in this whole world.
+      </p>
+
+      <p>
+        🌸 <strong>Indha Propose Day (February 8)-la, idhu en manasa sollra neram.</strong><br>
+        I don’t promise perfection,
+        but I promise love, loyalty, and forever.
+      </p>
+
+      <div class="image-box">
+        <img src="proposal.png" alt="Proposal Image">
+      </div>
+
+      <div class="propose">
+        Manoj, will you be mine forever? 💍💖
+      </div>
+
+      <div style="text-align:center;">
+        <button onclick="sayYes()">💘 Say Yes 💘</button>
+      </div>
+
+      <div class="love-message" id="loveMsg">
+        ❤️ Love you Manoj ❤️
+      </div>
+
+    </div>
+
+    <div class="mail-footer">
+      Always yours,<br>
+      <strong>Vathani 💕</strong>
+    </div>
+  </div>
+</div>
+
+<script>
+function createFall(symbol) {
+  const el = document.createElement("div");
+  el.className = "fall";
+  el.innerHTML = symbol;
+  el.style.left = Math.random() * 100 + "vw";
+  el.style.fontSize = Math.random() * 20 + 18 + "px";
+  el.style.animationDuration = (Math.random() * 3 + 4) + "s";
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 7000);
+}
+setInterval(() => createFall("🌹"), 500);
+setInterval(() => createFall("💖"), 600);
+
+function sayYes() {
+  for (let i = 0; i < 50; i++) {
+    createFall("💖");
+  }
+  document.getElementById("loveMsg").style.display = "block";
+}
+</script>
+
+</body>
+</html>
